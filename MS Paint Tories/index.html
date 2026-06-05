@@ -1,34 +1,92 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
-    <title>Kemi Badenoch</title>
-    <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS Paint Tories</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-    <h1>Tory of the Day</h1>
+    <h1>MS Paint Tories</h1>
+
+```
+<p class="intro">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+    commodo consequat.
+</p>
+```
+
 </header>
 
 <main>
 
-<h2>Kemi Badenoch</h2>
+```
+<section class="tory-of-the-day">
+    <h2>Tory of the Day</h2>
 
-<img src="/Images/kemi-b.png"
-     alt="Kemi Badenoch">
+    <div class="tory-card">
 
-<p>
+        <img id="tory-image"
+             src=""
+             alt="Tory of the Day">
 
-Kemi Badenoch started the fightback. Left a mess by the previous Tory Leader, Rishi Sunak, Kemi was the only one who had the drive and the vision to turn the Tory fortunes around. God Bless and God Speed!
+        <h3 id="tory-name">Loading...</h3>
 
-</p>
+        <p id="tory-summary">
+            Loading today's featured Tory...
+        </p>
+
+        <a id="tory-link" href="#">
+            Read More
+        </a>
+
+    </div>
+</section>
+```
 
 </main>
 
-<nav>
-    <a href="/index.html">Today's Tory</a>
-</nav>
+<script>
+
+async function loadToryOfTheDay() {
+
+    const response = await fetch('tories.json');
+    const tories = await response.json();
+
+    const today = new Date();
+
+    const dayNumber =
+        Math.floor(today.getTime() / (1000 * 60 * 60 * 24));
+
+    const index = dayNumber % tories.length;
+
+    const tory = tories[index];
+
+    document.getElementById('tory-name').textContent =
+        tory.name;
+
+    document.getElementById('tory-summary').textContent =
+        tory.summary;
+
+    document.getElementById('tory-image').src =
+        `Images/${tory.image}`;
+
+    document.getElementById('tory-image').alt =
+        tory.name;
+
+    document.getElementById('tory-link').href =
+        `Stories/${tory.page}`;
+}
+
+loadToryOfTheDay();
+
+</script>
 
 </body>
 </html>
