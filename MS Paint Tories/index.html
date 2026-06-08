@@ -23,67 +23,12 @@
 
 <main>
 
-```
-<section class="tory-of-the-day">
-    <h2>Tory of the Day</h2>
+<img
+  class="fit-picture"
+  src="/Images/kemi-b.png"
+  alt="Kemi Badenoch" />
 
-    <div class="tory-card">
 
-        <img id="tory-image"
-             src=""
-             alt="Tory of the Day">
-
-        <h3 id="tory-name">Loading...</h3>
-
-        <p id="tory-summary">
-            Loading today's featured Tory...
-        </p>
-
-        <a id="tory-link" href="#">
-            Read More
-        </a>
-
-    </div>
-</section>
-```
-
-</main>
-
-<script>
-
-async function loadToryOfTheDay() {
-
-    const response = await fetch('tories.json');
-    const tories = await response.json();
-
-    const today = new Date();
-
-    const dayNumber =
-        Math.floor(today.getTime() / (1000 * 60 * 60 * 24));
-
-    const index = dayNumber % tories.length;
-
-    const tory = tories[index];
-
-    document.getElementById('tory-name').textContent =
-        tory.name;
-
-    document.getElementById('tory-summary').textContent =
-        tory.summary;
-
-    document.getElementById('tory-image').src =
-        `Images/${tory.image}`;
-
-    document.getElementById('tory-image').alt =
-        tory.name;
-
-    document.getElementById('tory-link').href =
-        `Stories/${tory.page}`;
-}
-
-loadToryOfTheDay();
-
-</script>
 
 </body>
 </html>
